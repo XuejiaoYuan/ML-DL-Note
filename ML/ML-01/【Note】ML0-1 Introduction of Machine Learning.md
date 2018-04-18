@@ -11,10 +11,10 @@
 2. 训练machine以衡量函数的优劣；
 3. 选择算法挑选最佳函数；
 
-![机器学习框架](1.png)
+<img src="1.png" width="400" alt="机器学习框架" align="center" />
 
 ## P2. Learning Map
-![Learning Map](2.png) 
+<img src="2.png" width="400" alt="Learning Map" align="center" /> 
 ### Supervised Learning
 Training data：大量包含label的数据；
 
