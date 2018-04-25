@@ -80,12 +80,12 @@ git reset --hard <commit id>
 Git跟踪并管理的是修改而非文件，故在修改文件后需要再次将文件add到暂存区，若不执行git add操作，后续git commit操作将不会提交文件的修改。
 
 ## 撤销修改
-**场景一：**改乱工作区某个文件的内容，希望直接丢弃工作区的修改时：**git checkout \-\- \<file\>**，将文件在工作区的修改全部撤销，这里有两种情况：
+**场景一：**改乱工作区某个文件的内容，希望直接丢弃工作区的修改时：**git checkout -- \<file\>**，将文件在工作区的修改全部撤销，这里有两种情况：
 
 - 文件自修改后还没有被放到暂存区，则撤销修改就回到和版本库一样的版本，即回到最近一次**git add**时的状态；
 - 文件已添加到暂存区后又做了修改，则撤销修改将回到添加到暂存区后的状态，即回到最近一次**git commit**的状态；
 
-**场景二：**在改乱工作区文件内容，并将其添加到暂存区后，若想要丢弃修改，则先使用**git reset HEAD file**将其回退到场景一，再使用**git checkout \-\- \<file\>**进行下一步修改。
+**场景二：**在改乱工作区文件内容，并将其添加到暂存区后，若想要丢弃修改，则先使用**git reset HEAD file**将其回退到场景一，再使用**git checkout -- \<file\>**进行下一步修改。
 
 **场景三：**已提交不合适的修改到版本库，想要撤销本次提交，则使用**git reset --hard HEAD^**回退到上一个版本，前提是没有推送到远程库。
 
@@ -138,11 +138,11 @@ HEAD指向当前分支，若只有master分支，则HEASD指向master，master�
 
 <img src="0-2.png" width="300" alt="HEAD master" align="center" />
 
-<img src="0-3.png" width="500" alt="HEAD master" align="center" />
+<img src="0-3.png" width="300" alt="HEAD master" align="center" />
 
 若在dev上完成工作，即可将dev与master合并，即直接将master指向dev的当前提交，即完成合并。
 
-<img src="0-4.png" width="500" alt="HEAD master" align="center" />
+<img src="0-4.png" width="300" alt="HEAD master" align="center" />
 
 删除dev分支即为将dev指针删掉，删掉后，就剩一条master分支。
 
@@ -151,14 +151,14 @@ HEAD指向当前分支，若只有master分支，则HEASD指向master，master�
 1. 创建dev分支，并切换至dev分支：
 
 	```
-git checkout -b dev
-```
+	git checkout -b dev
+	```
 git checkout命令加上-b参数表示创建并切换，相当于：
 
 	```
-git branch dev
-git checkout dev
-```
+	git branch dev
+	git checkout dev
+	```
 2. 使用命令查看当前分支，将列出所有分支，当前分支前标一个*号：
 
 	```
