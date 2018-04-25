@@ -194,3 +194,87 @@ master分支应非常稳定，仅用来发布新版本，平时不在上面干�
 ```
 git merge --no-ff -m "merge with no-ff" dev
 ```
+
+### Bug分支
+若出现bug需要修复，则每个bug通过一个新的临时分支来修复，修复后，合并分支，并将临时分支删除。若在dev分支上还有工作未提交，则可使用stash功能将工作现场储存，此时工作区将变得干净，等以后恢复现场后继续工作：
+
+```
+git stash
+```
+确定需要修复bug的分支(此处假设为master)，并从其上创建临时分支，修复后提交：
+
+```
+git checkout master
+git checkout -b issue-101
+git add <filename>
+git commit -m "fix bug"
+git checkout master
+git merge --no-ff -m "merged bug fix 101" issue-101
+git branch -d issue-101
+```
+修复bug之后返回原来的dev分支继续工作，并恢复之前的工作现场：
+
+```
+git checkout dev
+git stash list
+git stash pop
+```
+使用stash list可查看存储的内容，使用stash pop可将存储的内容恢复并删除。
+
+### Feature分支
+每添加一个新功能，最好新建一个feature分支，在上面完成开发，之后合并并删除feature分支。若要丢弃一个没有被合并过的分支，则可以强项删除：
+```
+git branch -D <name>
+```
+
+### 多人协作
+当从远程仓库克隆时，Git自动把本地的master分支与远程的master分支对应起来，切远程仓库的默认名称为origin。使用**git remote -v**可以查看远程库的特征，表示为可以抓取和推送的origin的地址。
+
+```
+$ git remote -v
+origin git@github.com:<username>/<filename.git> (fetch)
+origin git@github.com:<username>/<filename.git> (push)
+```
+#### 推送分支
+推送分支，即把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样Git将会把该分支推送到远程库对应的远程分支上：
+
+```
+git push origin master
+```
+若要推送其他分支，如dev，则改为：
+
+```
+git push origin dev
+```
+- master分支为主分支，要时刻与远程同步；
+- dev分支为开发分支，也需要与远程同步；
+- bug分支只用于本地修复bug，不需要推送到远程；
+- feature分支推送到远程取决于是否要在上面合作开发；
+
+#### 抓取分支
+当从远程库clone时，默认情况下只能看到本地的master分支，若要在dev分支上开发，必须创建远程origin的dev分支到本地：
+
+```
+git checkout -b dev origin/dev
+```
+
+多人协作工作模式：
+
+1. 使用**git push origin <branch-name>**推送修改；
+2. 若推送失败，则因为远程分支比本地更新，需要使用**git pull**试图合并；若**git pull**失败，需要确认是否指定了本地dev分支与远程origin/dev分支的链接：
+	
+	```
+	git branch --set-upstream dev origin/dev
+	```
+3. 若合并有冲突，则解决冲突，并在本地提交；
+4. 没有冲突或解决冲突后，**git push origin <branch-name>**推送；
+
+## 标签管理
+### 创建标签
+1. 使用**git tag <name>**新建一个标签，默认为**HEAD**，也可以指定一个commit id；
+2. **git tag -a <tagname> -m "blablabla..."**可以指定标签信息；
+3. **git tag**可以查看所有标签；
+4. **git push origin <tagname>**可以推送一个本地标签；
+5. **git push origin --tag**可以推送全部未推送过的本地标签；
+6. **git tag -d <tagname>**可以删除一个本地标签；
+7. **git push origin :refs/tags/<tagname>**可以删除一个远程标签；
