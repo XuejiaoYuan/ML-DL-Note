@@ -72,7 +72,7 @@ git reset --hard <commit id>
 
 - **工作区（Working Directory）：**即电脑中可以看到的目录；
 
-- **版本区（Repository）：**工作区有一个隐藏目录.git，表示Git的版本库；Git版本库中最重要的是**暂存区stage\/index**，Git自动创建的第一个分支**master**及指向**master**的指针**HEAD**。
+- **版本区（Repository）：**工作区有一个隐藏目录.git，表示Git的版本库；Git版本库中最重要的是**暂存区(stage, index)**，Git自动创建的第一个分支**master**及指向**master**的指针**HEAD**。
 
 将文件添加入Git版本库中时，分为两步：
 
