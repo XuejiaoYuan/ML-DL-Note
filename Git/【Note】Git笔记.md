@@ -22,9 +22,9 @@
 1. 创建版本库：
 
 	```
-mkdir gitfile
-cd gitfile
-```
+	mkdir gitfile
+	cd gitfile
+	```
 2. 设置创建目录为Git可管理的仓库：
 
 	```
