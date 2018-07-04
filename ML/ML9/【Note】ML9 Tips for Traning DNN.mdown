@@ -10,7 +10,7 @@
 需要明确，在training set上模型结果不够理想并不是overfitting的原因，overfitting表现为训练集结果理想，
 而测试集结果糟糕。
 
-<img src="1.png" width="300">
+<img src="1.png" width="400">
 
 ## 优化DNN
 ### 优化训练数据结果
@@ -33,7 +33,7 @@
 
 Rectified Linear Unit(ReLU)
 
-<img src="2.png" width="300">
+<img src="2.png" width="400">
 
 原因：
 - 计算速度快;
@@ -44,7 +44,7 @@ Rectified Linear Unit(ReLU)
 只有在很小的邻域内属于线性，整体为非线性的。
 
 **3. Maxout**
-<img src="3.png" width="300">
+<img src="3.png" width="400">
 
 ReLU是Maxout的一种特殊情况。Maxout即是比较输入加权计算结果的大小，并输出最大值的函数，由上图可知，这种形式计算结果，
 相当于自主学习activation函数，对于这种方式：
@@ -55,25 +55,25 @@ ReLU是Maxout的一种特殊情况。Maxout即是比较输入加权计算结果�
 
 **RMSProp**
 
-<img src="4.png" width="300">
+<img src="4.png" width="400">
 
 
 **Momentum**
 
-<img src="5.png" width="300">
+<img src="5.png" width="400">
 
 借鉴物体滚落时的惯性概念，当参数移动到梯度为0的位置，由于存在惯性，因此参数仍然会保持原方向变化。但这个方式不能保证最后得到的
 结果能够脱离局部最优的情况。
 
 **1.Vanilla Gradient Descent**
 
-<img src="6.png" width="300">
+<img src="6.png" width="400">
 
 普通的梯度下降方式。
 
 **2. Momentum**
 
-<img src="7.png" width="300">
+<img src="7.png" width="400">
 
 Momentun是综合过去所有移动的结果。
 
@@ -94,18 +94,18 @@ Momentun是综合过去所有移动的结果。
 
 #### Regularization
 
-<img src="8.png" width="300">
+<img src="8.png" width="400">
 
 正则化即是将模型中无用的连接删除。在使用正则化之前，损失函数只考虑cross entropy，但在使用正则化之后引入了正则项，希望参数值越小越好。
 在整理公式后可以看到，由于(1-yita*lambda)这一项小于1，若每次更新都乘以该值，则w将减小至0，但由于后面存在偏微分的约束，对于对损失有
 影响的w参数而言，将不会变为0，而是在前后两项中取得平衡。
 
 #### Dropout
-<img src="9.png" width="300">
+<img src="9.png" width="400">
 
 即在每次训练参数时，以一定的概率将神经元剔除，则模型会更加的稀疏。
 
-<img src="10.png" width="300">
+<img src="10.png" width="400">
 
 需要注意在测试时的参数与训练时的参数是不相同的，由于在训练参数时会将部分神经元丢弃，而测试时使用所有的神经元进行计算，因此若不调整
 测试是的参数，得到的结果会是训练结果的1/p倍。
@@ -115,4 +115,4 @@ Momentun是综合过去所有移动的结果。
 Dropout是一种Ensemble，Ensemble即是使用训练数据训练多个网络，并在测试时将测试数据输入每一个网络中，将得到的结果求均值作为最后的输出结果。
 而Dropout在对每个参数乘以(1-p)后的测试得到的结果与Ensemble的效果相同，尽管证明两者效果的方式仅在激活函数为线性时成立。
 
-<img src="11.png" width="300">
+<img src="11.png" width="400">
