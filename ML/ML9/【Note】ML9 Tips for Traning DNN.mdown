@@ -44,6 +44,7 @@ Rectified Linear Unit(ReLU)
 只有在很小的邻域内属于线性，整体为非线性的。
 
 **3. Maxout**
+
 <img src="3.png" width="400">
 
 ReLU是Maxout的一种特殊情况。Maxout即是比较输入加权计算结果的大小，并输出最大值的函数，由上图可知，这种形式计算结果，
